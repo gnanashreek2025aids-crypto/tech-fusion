@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QuizTime</title>
+</head>
+<body>
+
+    <h2>QuizTime – Simple Quiz</h2>
+
+    <button onclick="startQuiz()">Start Quiz</button>
+
+    <script>
+        // Questions and answers in Array
+        let questions = [
+            ["Which language is used to style web pages?", "CSS"],
+            ["HTML stands for?", "HyperText Markup Language"],
+            ["Which language is used to make websites interactive?", "JavaScript"]
+        ];
+
+        let index = 0;
+        let score = 0;
+
+        function startQuiz() {
+            index = 0;
+            score = 0;
+            showQuestion();
+        }
+
+        // Show each question
+        function showQuestion() {
+            document.body.innerHTML = "";  // Clear screen
+
+            document.write("<h3>Question " + (index + 1) + "</h3>");
+            document.write("<p>" + questions[index][0] + "</p>");
+
+            document.write("<input type='text' id='answer' placeholder='Type your answer'>");
+            document.write("<br><br>");
+
+            document.write("<button onclick='checkAnswer()'>Next</button>");
+        }
+
+        // Check user answer
+        function checkAnswer() {
+            let userAns = document.getElementById("answer").value;
+
+            if (userAns.toLowerCase() === questions[index][1].toLowerCase()) {
+                score++;
+            }
+
+            index++;
+
+            if (index < questions.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        // Final score
+        function showResult() {
+            document.body.innerHTML = "";
+            document.write("<h2>Quiz Completed!</h2>");
+            document.write("<h3>Your Score: " + score + " / " + questions.length + "</h3>");
+        }
+    </script>
+
+</body>
+</html>
